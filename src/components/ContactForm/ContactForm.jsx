@@ -4,8 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FaUser, FaPhoneAlt, FaSpinner } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactsOps';
-import { selectIsAdding } from '../../redux/selectors';
+import { addContact, selectIsAdding } from '../../redux/contacts';
 
 const initialValues = { name: '', number: '' };
 const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{0,6}\)[ -]?)|([0-9]{0,4})[ -]?)*?[0-9]{2,4}[ -]?[0-9]{2,4}$/;

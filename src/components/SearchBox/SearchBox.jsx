@@ -2,8 +2,7 @@ import css from './SearchBox.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaUser } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
-import { changeFilter } from '../../redux/filterSlice';
-import { selectFilter } from '../../redux/selectors';
+import { changeFilter, selectFilter } from '../../redux/filter';
 
 export default function SearchBox() {
   const searchValue = useSelector(selectFilter);

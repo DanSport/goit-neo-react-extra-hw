@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { FaUser, FaPhoneAlt, FaSpinner } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from '../../redux/contactsOps';
-import { selectIsDeleting } from '../../redux/selectors';
+import { deleteContact, selectIsDeleting } from '../../redux/contacts/';
 
 export default function Contact({ contact }) {
   const dispatcher = useDispatch();

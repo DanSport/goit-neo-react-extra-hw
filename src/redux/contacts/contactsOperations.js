@@ -1,11 +1,12 @@
-import axios from 'axios';
+import { myAxios } from '../axiosConfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://66d34425184dce1713cfc2db.mockapi.io/phonebook';
+// const baseURLPrefix = '';
+const baseURLPrefix = '/phonebook';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, ThunkAPI) => {
   try {
-    return (await axios.get('/contacts')).data;
+    return (await myAxios.get(`${baseURLPrefix}/contacts`)).data;
   } catch {
     return ThunkAPI.rejectWithValue('Error fetching contacts');
   }
@@ -13,7 +14,7 @@ export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, Thu
 
 export const addContact = createAsyncThunk('contacts/addContact', async (contact, ThunkAPI) => {
   try {
-    return (await axios.post('/contacts', contact)).data;
+    return (await myAxios.post(`${baseURLPrefix}/contacts`, contact)).data;
   } catch {
     return ThunkAPI.rejectWithValue('Error adding contact');
   }
@@ -21,7 +22,7 @@ export const addContact = createAsyncThunk('contacts/addContact', async (contact
 
 export const deleteContact = createAsyncThunk('contacts/deleteContact', async (id, ThunkAPI) => {
   try {
-    await axios.delete('contacts/' + id);
+    await myAxios.delete(`${baseURLPrefix}contacts/` + id);
     return id;
   } catch {
     return ThunkAPI.rejectWithValue('Error deleting contact');

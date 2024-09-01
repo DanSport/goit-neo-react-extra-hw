@@ -1,13 +1,12 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { selectContactsExist, selectError } from '../../redux/selectors';
+import 'react-toastify/dist/ReactToastify.css';
+import css from './App.module.css';
 import ContactForm from '../ContactForm/ContactForm';
 import SearchBox from '../SearchBox/SearchBox';
 import ContactList from '../ContactList/ContactList';
-import css from './App.module.css';
-import 'react-toastify/dist/ReactToastify.css';
-import { fetchContacts } from '../../redux/contactsOps';
-import { useEffect } from 'react';
+import { fetchContacts, selectContactsExist, selectError } from '../../redux/contacts';
 
 export default function App() {
   const dispatch = useDispatch();
