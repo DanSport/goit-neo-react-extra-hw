@@ -1,60 +1,37 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import { Route, Routes } from 'react-router';
+import CommonLayout from '../CommonLayout/CommonLayout';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import css from './App.module.css';
-import ContactForm from '../ContactForm/ContactForm';
-import SearchBox from '../SearchBox/SearchBox';
-import ContactList from '../ContactList/ContactList';
-import { fetchContacts, selectContactsExist, selectError } from '../../redux/contacts';
+import { selectUserError, selectIsLoggedIn, selectIsRefreshing, selectToken } from '../../redux/selectors';
+import { refreshUser } from '../../redux/auth/authOperations';
+
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
+const ContactsPage = lazy(() => import('../../pages/ContactsPage/ContactsPage'));
 
 export default function App() {
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userError = useSelector(selectUserError);
 
-  const error = useSelector(selectError);
-  const contactsExist = useSelector(selectContactsExist);
+  console.log({ token, isRefreshing, isLoggedIn, userError });
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, []);
+    if (token && !isRefreshing && !isLoggedIn & !userError) dispatch(refreshUser());
+  }, [dispatch, token, isRefreshing, isLoggedIn, userError]);
 
   return (
-    <div className={css.app}>
-      <h1>Phonebook</h1>
-
-      <div className={css.card}>
-        <ContactForm />
-      </div>
-
-      {error && (
-        <div className={css.card}>
-          <p className={css.error}>An error has occured</p>
-          <p className={css.subError}>{error}</p>
-        </div>
-      )}
-
-      {contactsExist && (
-        <div className={css.card}>
-          <SearchBox />
-        </div>
-      )}
-
-      <div className={css.list}>
-        <ContactList />
-      </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<CommonLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/login" element={<AuthPage doRegister={false} />} />
+          <Route path="/register" element={<AuthPage doRegister={true} />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }

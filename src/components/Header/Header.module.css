@@ -1,0 +1,10 @@
+.header {
+  background-color: #f7f7f7;
+  height: 75px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 0px 100vmax #f7f7f7;
+  clip-path: inset(0 -100vmax 0 -100vmax);
+}

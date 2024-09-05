@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { registerUser, loginUser, logoutUser, refreshUser } from './authOperations';
+import { registerUserThunk } from './registerUserThunk';
+import { loginUserThunk } from './loginUserThunk';
+import { logoutUserThunk } from './logoutUserThunk';
+import { refreshUserThunk } from './refreshUserThunk';
 
 const initialState = {
   user: {
@@ -10,6 +14,8 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  isLoading: false,
+  error: false,
 };
 
 const authSlice = createSlice({
@@ -18,25 +24,18 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
-      })
-      .addCase(loginUser.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
-      })
-      .addCase(logoutUser.fulfilled, state => {
-        state.user = { name: null, email: null };
-        state.token = null;
-      })
-      .addCase(refreshUser.fulfilled, state => {
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(refreshUser.pending, state => {
-        state.isRefreshing = true;
-      });
+      .addCase(registerUser.pending, registerUserThunk.pending)
+      .addCase(registerUser.fulfilled, registerUserThunk.fulfilled)
+      .addCase(registerUser.rejected, registerUserThunk.rejected)
+      .addCase(loginUser.pending, loginUserThunk.pending)
+      .addCase(loginUser.fulfilled, loginUserThunk.fulfilled)
+      .addCase(loginUser.rejected, loginUserThunk.rejected)
+      .addCase(logoutUser.pending, logoutUserThunk.pending)
+      .addCase(logoutUser.fulfilled, logoutUserThunk.fulfilled)
+      .addCase(logoutUser.rejected, logoutUserThunk.rejected)
+      .addCase(refreshUser.pending, refreshUserThunk.pending)
+      .addCase(refreshUser.fulfilled, refreshUserThunk.fulfilled)
+      .addCase(refreshUser.rejected, refreshUserThunk.rejected);
   },
 });
 

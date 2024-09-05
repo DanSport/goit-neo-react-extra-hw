@@ -1,6 +1,6 @@
 import { selectFilter } from './filter/filterSelectors';
 import { selectContacts, selectContactsExist, selectFilteredContacts, selectIsLoading, selectError, selectIsAdding, selectIsDeleting } from './contacts/contactsSelectors';
-import { selectUser, selectToken, selectIsLoggedIn, selectIsRefreshing } from './auth/authSelectors';
+import { selectUser, selectToken, selectIsLoggedIn, selectIsRefreshing,selectUserIsLoading,selectUserError } from './auth/authSelectors';
 
 export {
   selectFilter,
@@ -15,4 +15,6 @@ export {
   selectToken,
   selectIsLoggedIn,
   selectIsRefreshing,
+  selectUserIsLoading,
+  selectUserError
 };

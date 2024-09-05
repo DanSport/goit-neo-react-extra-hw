@@ -5,6 +5,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
 button {
   padding: 10px 20px;
   display: flex;
@@ -18,7 +25,7 @@ button {
   font-size: 16px;
   line-height: 24px;
 
-  background-color: #f0ffff;
+  background-color: #19ff4f;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
 
   transition: box-shadow 0.2s ease-in-out;
@@ -30,4 +37,23 @@ button:hover {
 
 button:disabled {
   color: rgba(0, 0, 0, 0.3);
+}
+
+section,
+header,
+footer {
+  max-width: 1280px;
+  min-width: 320px;
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
 }
