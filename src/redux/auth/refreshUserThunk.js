@@ -10,10 +10,12 @@ export const refreshUserThunk = {
     state.user = { name, email };
     state.isLoggedIn = true;
     state.isRefreshing = false;
+    state.isLoading = false;
   },
   rejected: state => {
     state.error = true;
     state.isRefreshing = false;
     myAxios.unsetToken();
+    state.isLoading = false;
   },
 };

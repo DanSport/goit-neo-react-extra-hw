@@ -13,7 +13,7 @@ export default function SearchBox() {
     <IconContext.Provider value={{ className: css.icon }}>
       <div className={css.box}>
         <label className={css.label}>
-          Find contacts by name:
+          Find contacts:
           <input type="text" className={css.input} onChange={e => onSearch(e.target.value)} value={searchValue} />
           <FaUser />
         </label>

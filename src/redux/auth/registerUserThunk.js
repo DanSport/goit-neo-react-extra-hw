@@ -10,6 +10,7 @@ export const registerUserThunk = {
     state.user = user;
     state.token = token;
     state.isLoggedIn = true;
+    state.isLoading = false;
     myAxios.setToken(token);
   },
   rejected: state => {

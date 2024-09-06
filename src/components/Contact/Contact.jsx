@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { FaUser, FaPhoneAlt, FaSpinner } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, selectIsDeleting } from '../../redux/contacts/';
+import { deleteContact, selectContactsIsDeleting } from '../../redux/contacts/';
 
 export default function Contact({ contact }) {
   const dispatcher = useDispatch();
-  const isDeleting = useSelector(selectIsDeleting);
+  const isDeleting = useSelector(selectContactsIsDeleting);
   const isDeletingThis = isDeleting.some(id => String(id) === String(contact.id));
 
   const onDelete = e => {

@@ -1,8 +1,8 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import CommonLayout from '../CommonLayout/CommonLayout';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserError, selectIsLoggedIn, selectIsRefreshing, selectToken } from '../../redux/selectors';
+import { selectUserError, selectIsLoggedIn, selectIsRefreshing, selectToken } from '../../redux/auth';
 import { refreshUser } from '../../redux/auth/authOperations';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
@@ -24,14 +24,19 @@ export default function App() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        <Route path="/" element={<CommonLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/login" element={<AuthPage doRegister={false} />} />
-          <Route path="/register" element={<AuthPage doRegister={true} />} />
-          <Route path="/contacts" element={<ContactsPage />} />
-        </Route>
-      </Routes>
+      {isRefreshing ? (
+        <div>Loading...</div>
+      ) : (
+        <Routes>
+          <Route path="/" element={<CommonLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <AuthPage doRegister={false} />} />
+            <Route path="/register" element={isLoggedIn ? <Navigate to="/" /> : <AuthPage doRegister={true} />} />
+            <Route path="/contacts" element={isLoggedIn ? <ContactsPage /> : <Navigate to="/login" />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      )}
     </Suspense>
   );
 }

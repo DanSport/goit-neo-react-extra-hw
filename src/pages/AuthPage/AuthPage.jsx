@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { loginUser, registerUser } from '../../redux/auth/authOperations';
-import { selectIsLoggedIn } from '../../redux/selectors';
+import { selectIsLoggedIn } from '../../redux/auth';
 import { Navigate } from 'react-router';
 
 export default function AuthPage({ doRegister = false }) {

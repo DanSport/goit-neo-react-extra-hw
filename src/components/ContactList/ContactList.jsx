@@ -1,15 +1,15 @@
 import css from './ContactList.module.css';
 import Contact from '../Contact/Contact';
 import { useSelector } from 'react-redux';
-import { selectContactsExist, selectFilteredContacts, selectIsLoading } from '../../redux/selectors';
+import { selectContactsExist, selectFilteredContacts, selectContactsIsLoading } from '../../redux/contacts';
 
 export default function ContactList() {
   const contactsExist = useSelector(selectContactsExist);
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectContactsIsLoading);
   const filteredContacts = useSelector(selectFilteredContacts);
 
   return (
-    <div>
+    <>
       {isLoading && <p>Loading contacts...</p>}
 
       {filteredContacts.length > 0 ? (
@@ -22,9 +22,9 @@ export default function ContactList() {
         !isLoading && (
           contactsExist ?
             <div className={css.card}>No contacts found</div> :
-            <div className={css.card}>There are no contacts</div>
+            <div className={css.card}>Phonebook is empty</div>
         )
       )}
-    </div>
+    </>
   );
 }
