@@ -1,5 +1,5 @@
-import { contactsReducer } from './contactsSlice';
-import { fetchContacts, addContact, deleteContact } from './contactsOperations';
+import { contactsReducer } from './slice';
+import { fetchContacts, addContact, deleteContact } from './operations';
 import {
   selectContacts,
   selectContactsExist,
@@ -8,7 +8,7 @@ import {
   selectContactsError,
   selectContactsIsAdding,
   selectContactsIsDeleting,
-} from './contactsSelectors';
+} from './selectors';
 
 export {
   contactsReducer,

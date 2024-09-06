@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { registerUser, loginUser, logoutUser, refreshUser } from './authOperations';
+import { registerUser, loginUser, logoutUser, refreshUser } from './operations';
 import { registerUserThunk } from './registerUserThunk';
 import { loginUserThunk } from './loginUserThunk';
 import { logoutUserThunk } from './logoutUserThunk';

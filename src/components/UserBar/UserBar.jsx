@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser, selectUserIsLoading } from '../../redux/auth';
-import { logoutUser } from '../../redux/auth/authOperations';
+import { selectUser, selectUserIsLoading, logoutUser } from '../../redux/auth';
 import style from './UserBar.module.css';
 
 export default function UserBar() {

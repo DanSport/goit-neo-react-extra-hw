@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router';
 import CommonLayout from '../CommonLayout/CommonLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserError, selectIsLoggedIn, selectIsRefreshing, selectToken } from '../../redux/auth';
-import { refreshUser } from '../../redux/auth/authOperations';
+import { refreshUser } from '../../redux/auth';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage'));
