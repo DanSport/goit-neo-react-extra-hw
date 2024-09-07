@@ -5,8 +5,8 @@ export const logoutUserThunk = {
     state.isLoading = true;
     state.error = false;
   },
-  fulfilled: (state, { payload: { name, email } }) => {
-    state.user = { name, email };
+  fulfilled: state => {
+    state.user = { name: null, email: null };
     state.token = null;
     state.isLoggedIn = false;
     state.isLoading = false;
