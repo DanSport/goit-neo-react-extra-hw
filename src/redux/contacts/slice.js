@@ -20,7 +20,7 @@ const contactsSlice = createSlice({
       state.items = [];
       state.isLoading = false;
       state.error = false;
-    }
+    },
   },
   extraReducers: builder => {
     builder

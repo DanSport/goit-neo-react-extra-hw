@@ -19,11 +19,7 @@ export default function ContactList() {
           ))}
         </ul>
       ) : (
-        !isLoading && (
-          contactsExist ?
-            <div className={css.card}>No contacts found</div> :
-            <div className={css.card}>Phonebook is empty</div>
-        )
+        !isLoading && (contactsExist ? <div className={css.card}>No contacts found</div> : <div className={css.card}>Phonebook is empty</div>)
       )}
     </>
   );

@@ -4,7 +4,9 @@ import { selectFilter } from '../filter/filterSelectors';
 export const selectContacts = state => state.contacts.items;
 export const selectContactsExist = createSelector([selectContacts], contacts => contacts.length > 0);
 export const selectFilteredContacts = createSelector([selectContacts, selectFilter], (contacts, filter) =>
-  contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()) || String(contact.number).toLowerCase().includes(filter.toLowerCase())).sort((a, b) => a.name.localeCompare(b.name))
+  contacts
+    .filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()) || String(contact.number).toLowerCase().includes(filter.toLowerCase()))
+    .sort((a, b) => a.name.localeCompare(b.name))
 );
 
 export const selectContactsIsLoading = state => state.contacts.isLoading;
