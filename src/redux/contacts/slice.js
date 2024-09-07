@@ -15,6 +15,13 @@ const contactsSlice = createSlice({
     isAdding: false,
     isDeleting: [],
   },
+  reducers: {
+    clearContacts: state => {
+      state.items = [];
+      state.isLoading = false;
+      state.error = false;
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, state => {
@@ -62,3 +69,4 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
+export const { clearContacts } = contactsSlice.actions;

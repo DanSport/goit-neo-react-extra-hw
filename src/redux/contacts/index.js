@@ -1,4 +1,4 @@
-import { contactsReducer } from './slice';
+import { contactsReducer, clearContacts } from './slice';
 import { fetchContacts, addContact, deleteContact } from './operations';
 import {
   selectContacts,
@@ -15,6 +15,7 @@ export {
   fetchContacts,
   addContact,
   deleteContact,
+  clearContacts,
   selectContacts,
   selectContactsExist,
   selectFilteredContacts,

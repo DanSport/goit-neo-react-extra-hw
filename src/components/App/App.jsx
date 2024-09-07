@@ -16,8 +16,6 @@ export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const userError = useSelector(selectUserError);
 
-  console.log({ token, isRefreshing, isLoggedIn, userError });
-
   useEffect(() => {
     if (token && !isRefreshing && !isLoggedIn & !userError) dispatch(refreshUser());
   }, [dispatch, token, isRefreshing, isLoggedIn, userError]);
