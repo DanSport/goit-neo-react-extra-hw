@@ -4,7 +4,7 @@ import { fetchContacts, addContact, deleteContact } from './operations';
 
 const isRejectedAction = action => action.type.endsWith('rejected');
 const isPendingAction = action => action.type.endsWith('pending');
-const isFulfilledAction = action => action.type.endsWith('fullfilled');
+const isFulfilledAction = action => action.type.endsWith('fulfilled');
 
 const contactsSlice = createSlice({
   name: 'contacts',

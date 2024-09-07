@@ -8,7 +8,7 @@ export const registerUser = createAsyncThunk('auth/register', async (userData, T
     const res = await myAxios.post(`${baseURLPrefix}/signup`, userData, { headers: { 'Content-Type': 'application/json' } });
     return res.data;
   } catch {
-    return ThunkAPI.rejectWithValue('Error fetching contacts');
+    return ThunkAPI.rejectWithValue('Error authenticating');
   }
 });
 
@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk('auth/login', async ({ email, password
     const res = await myAxios.post(`${baseURLPrefix}/login`, { email, password });
     return res.data;
   } catch {
-    return ThunkAPI.rejectWithValue('Error adding contact');
+    return ThunkAPI.rejectWithValue('Error authenticating');
   }
 });
 
@@ -26,7 +26,7 @@ export const logoutUser = createAsyncThunk('auth/logout', async (_, ThunkAPI) =>
     const res = await myAxios.post(`${baseURLPrefix}/logout`);
     return res.data;
   } catch {
-    return ThunkAPI.rejectWithValue('Error fetching contacts');
+    return ThunkAPI.rejectWithValue('Error authenticating');
   }
 });
 
@@ -39,6 +39,6 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, ThunkAPI) 
     const res = await myAxios.get(`${baseURLPrefix}/current`);
     return res.data;
   } catch {
-    return ThunkAPI.rejectWithValue('Error fetching contacts');
+    return ThunkAPI.rejectWithValue('Error authenticating');
   }
 });
