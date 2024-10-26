@@ -24,25 +24,27 @@ export default function ContactForm() {
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-      <Form className={css.fields}>
-        <IconContext.Provider value={{ className: css.icon }}>
-          <label className={css.label}>
-            Name
-            <Field type="text" name="name" className={css.input} />
-            <ErrorMessage name="name" component="p" className={css.error} />
-            <FaUser />
-          </label>
-          <label className={css.label}>
-            Number
-            <Field type="text" name="number" className={css.input} />
-            <ErrorMessage name="number" component="p" className={css.error} />
-            <FaPhoneAlt />
-          </label>
-          <button type="submit" className={css.btn} disabled={isAdding}>
-            {isAdding ? <FaSpinner className={css.spinner} /> : 'Add contact'}
-          </button>
-        </IconContext.Provider>
-      </Form>
+      {({ setFieldTouched }) => (
+        <Form className={css.fields}>
+          <IconContext.Provider value={{ className: css.icon }}>
+            <label className={css.label}>
+              Name
+              <Field type="text" name="name" className={css.input} onBlur={() => setFieldTouched('name', false, false)} />
+              <ErrorMessage name="name" component="p" className={css.error} />
+              <FaUser />
+            </label>
+            <label className={css.label}>
+              Number
+              <Field type="text" name="number" className={css.input} onBlur={() => setFieldTouched('number', false, false)} />
+              <ErrorMessage name="number" component="p" className={css.error} />
+              <FaPhoneAlt />
+            </label>
+            <button type="submit" className={css.btn} disabled={isAdding}>
+              {isAdding ? <FaSpinner className={css.spinner} /> : 'Add contact'}
+            </button>
+          </IconContext.Provider>
+        </Form>
+      )}
     </Formik>
   );
 }

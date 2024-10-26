@@ -17,7 +17,7 @@ export default function Contact({ contact }) {
 
   return (
     <IconContext.Provider value={{ style: { margin: '0 10px 0 0' } }}>
-      <li className={css.contact} key={contact.id}>
+      <div className={css.contact}>
         <div className={css.data}>
           <p className={css.name}>
             <FaUser />
@@ -31,7 +31,7 @@ export default function Contact({ contact }) {
         <button className={css.btn} onClick={onDelete} disabled={isDeletingThis}>
           {isDeletingThis ? <FaSpinner className={css.spinner} /> : 'Delete'}
         </button>
-      </li>
+      </div>
     </IconContext.Provider>
   );
 }

@@ -10,13 +10,13 @@ export default function Navigation() {
     <nav className={style.nav}>
       <ul className={style.nav}>
         <li>
-          <NavLink activeClassName={style.active} className={style.link} to="/">
+          <NavLink to="/" className={({ isActive }) => (isActive ? `${style.link} ${style.active}` : style.link)}>
             Home
           </NavLink>
         </li>
         {isLoggedIn && (
           <li>
-            <NavLink activeClassName={style.active} className={style.link} to="/contacts">
+            <NavLink to="/contacts" className={({ isActive }) => (isActive ? `${style.link} ${style.active}` : style.link)}>
               Contacts
             </NavLink>
           </li>

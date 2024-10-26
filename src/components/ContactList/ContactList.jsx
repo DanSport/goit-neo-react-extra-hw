@@ -1,4 +1,4 @@
-import css from './ContactList.module.css';
+import styles from './ContactList.module.css';
 import Contact from '../Contact/Contact';
 import { useSelector } from 'react-redux';
 import { selectContactsExist, selectFilteredContacts, selectContactsIsLoading } from '../../redux/contacts';
@@ -13,13 +13,15 @@ export default function ContactList() {
       {isLoading && <p>Loading contacts...</p>}
 
       {filteredContacts.length > 0 ? (
-        <ul className={css.list}>
+        <ul className={styles.contactList}>
           {filteredContacts.map(contact => (
-            <Contact key={contact.id} contact={contact} />
+            <li key={contact.id} className={styles.contactItem}>
+              <Contact contact={contact} />
+            </li>
           ))}
         </ul>
       ) : (
-        !isLoading && (contactsExist ? <div className={css.card}>No contacts found</div> : <div className={css.card}>Phonebook is empty</div>)
+        !isLoading && (contactsExist ? <div className={styles.contactItem}>No contacts found</div> : <div className={styles.contactItem}>Phonebook is empty</div>)
       )}
     </>
   );

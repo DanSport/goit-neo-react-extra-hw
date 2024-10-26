@@ -6,25 +6,22 @@
 }
 
 .app {
-  width: max-content;
   min-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   gap: 20px;
   padding: 20px;
 }
 
 .card {
   padding: 20px;
-  width: 100%;
-
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
-
+  justify-content: center;
   border: none;
   border-radius: 15px;
   background-color: #f7f7f7;
@@ -32,8 +29,13 @@
 }
 
 .list {
-  composes: card;
-  padding: 10px;
+  display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 .error {
