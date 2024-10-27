@@ -1,7 +1,6 @@
-import { myAxios } from '../axiosConfig';
+import myAxios from '../axiosConfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// const baseURLPrefix = '';
 const baseURLPrefix = '';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, ThunkAPI) => {

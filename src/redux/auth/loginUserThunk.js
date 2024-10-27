@@ -1,4 +1,4 @@
-import { myAxios } from '../axiosConfig';
+import myAxios from '../axiosConfig';
 
 export const loginUserThunk = {
   pending: state => {

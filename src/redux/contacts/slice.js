@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import { fetchContacts, addContact, deleteContact } from './operations';
+import { logoutUser } from '../auth/operations';
 
 const isRejectedAction = action => action.type.endsWith('rejected');
 const isPendingAction = action => action.type.endsWith('pending');
@@ -53,6 +53,11 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.rejected, (state, { meta: { arg: curId } }) => {
         state.isDeleting = state.isDeleting.filter(id => id != curId);
+      })
+      .addCase(logoutUser.fulfilled, state => {
+        state.items = [];
+        state.isLoading = false;
+        state.error = false;
       })
       .addMatcher(isPendingAction, state => {
         state.error = false;

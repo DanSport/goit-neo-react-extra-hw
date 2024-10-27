@@ -1,4 +1,4 @@
-import { myAxios } from '../axiosConfig';
+import myAxios from '../axiosConfig';
 
 export const clearUser = state => {
   state.user = { name: null, email: null };
